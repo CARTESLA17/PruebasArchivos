@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app="prueba">
+<head>
+	<meta charset="UTF-8" />
+	<title>Chispitas Car</title>
+</head>
+
+<body ng-app="springmvc-angular" ng-controller="Controlador1" ng-init="getVehiculos()">	
+	INGRESAR VEHICULO:
+	<div class="form">
+		Todos los campos son obligatorios!
+		<div>
+			<label for="placa">Placa(Máximo 6 carácteres):</label>
+			<input id="placa" ng-model="placa" type="text" />
+		</div>
+		<div>
+			<label for="puertas">Puertas(solo numeros):</label>
+			<input id="puertas" ng-model="puertas" type="text" />
+		</div>
+		<div>
+			<label for="marca">Marca(solo texto):</label>
+			<select id="marca" ng-model="marca" ng-options="marca as marca.nombre for marca in marcas track by marca.id" ng-change="update()">
+				<option value="">--Elige opcion--</option>
+			</select>	
+			<button id="btnMarcas" class="btn" ng-click="buscarMarcas()">Buscar Marcas</button>		
+		</div>
+		<div>
+			<label for="modelo">modelo(solo texto):</label>
+			<select id="modelo" ng-model="modelo" ng-options="modelo as modelo.nombre for modelo in modelos track by modelo.id">
+				<option value="">--Elige opcion--</option>
+			</select>
+			<button id="btnModelos" class="btn" ng-click="buscarModelos()">Buscar Modelos</button>					
+		</div>
+		<div>
+			<label for="ciudad">ciudad(solo texto):</label>
+			<select id="ciudad" ng-model="ciudad" ng-options="ciudad as ciudad.nombre for ciudad in ciudades track by ciudad.id">
+				<option value="">--Elige opcion--</option>
+			</select>
+			<button id="btnCiudades" class="btn" ng-click="buscarCiudades()">Buscar Ciudades</button>			
+		</div>
+			
+		<div>			
+			<button id="addBtn" class="btn" ng-click="addVehiculo()">Añadir Vehiculo</button>
+			<h4>{{msgBusUP}}</h4>				
+		</div>
+	</div>		
+	LISTADO DE VEHICULOS:
+	<div class="container"  ng-show="vehiculos != null">		
+		<div class="vehiculo-info-bottom" ng-repeat="vehiculo in vehiculos">
+			<h4><span> Marca:{{vehiculo.marca}} - Modelo:{{vehiculo.modelo}} - Placa:{{vehiculo.placa}} - Ciudad:{{vehiculo.ciudad}} -Puertas: {{vehiculo.puertas}} -Fecha Registro: {{vehiculo.fechaRegistro}}</span></h4>
+		
+		</div>
+	</div>		
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.21/angular-resource.js"></script>
+	<script src="./js/services.js"></script>
+</body>
+</html>
+
+
